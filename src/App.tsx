@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 
-import CustomCursor from './components/CustomCursor';
 import Navigation from './components/Navigation';
 import Preloader from './components/Preloader';
 
 import Home from './pages/Home';
 import About from './pages/About';
-import Work from './pages/Work';
+import Team from './pages/Team';
+import Contact from './pages/Contact';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -25,11 +25,14 @@ function AnimatedRoutes() {
   
   return (
     <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/work" element={<Work />} />
-      </Routes>
+      <motion.div key={location.pathname} className="h-full w-full">
+        <Routes location={location}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </motion.div>
     </AnimatePresence>
   );
 }
@@ -37,34 +40,15 @@ function AnimatedRoutes() {
 export default function App() {
   const [loading, setLoading] = useState(true);
 
-  // Prevent scrolling while loading
-  useEffect(() => {
-    if (loading) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  }, [loading]);
-
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-black text-slate-300 font-sans relative">
-        <CustomCursor />
-        
-        <AnimatePresence mode="wait">
-          {loading && <Preloader onComplete={() => setLoading(false)} />}
-        </AnimatePresence>
-
-        {!loading && (
-          <>
-            {/* Global Noise Texture */}
-            <div className="fixed inset-0 z-50 pointer-events-none bg-noise mix-blend-overlay opacity-40" />
-            
-            <Navigation />
-            <AnimatedRoutes />
-          </>
-        )}
+      <AnimatePresence mode="wait">
+        {loading && <Preloader onComplete={() => setLoading(false)} />}
+      </AnimatePresence>
+      <div className="min-h-screen bg-stone-950 text-stone-100 font-sans antialiased selection:bg-stone-100 selection:text-stone-950">
+        <Navigation />
+        <AnimatedRoutes />
       </div>
     </Router>
   );

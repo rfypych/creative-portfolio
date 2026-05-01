@@ -1,73 +1,110 @@
-import { motion, useScroll, useMotionValueEvent } from 'motion/react';
+import { motion, useScroll } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
-import { useRef, useState } from 'react';
-
-export function Magnetic({ children, className = "" }: { children: React.ReactNode, className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { clientX, clientY } = e;
-    const boundingRect = ref.current?.getBoundingClientRect();
-    if (boundingRect) {
-      const { width, height, top, left } = boundingRect;
-      const middleX = clientX - (left + width / 2);
-      const middleY = clientY - (top + height / 2);
-      setPosition({ x: middleX * 0.3, y: middleY * 0.3 });
-    }
-  };
-
-  const reset = () => setPosition({ x: 0, y: 0 });
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouse}
-      onMouseLeave={reset}
-      animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import { useState, useEffect } from 'react';
 
 export default function Navigation() {
   const location = useLocation();
-  const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY, scrollYProgress } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 50);
-  });
+  useEffect(() => {
+    return scrollY.on('change', (latest) => {
+      setIsScrolled(latest > 50);
+    });
+  }, [scrollY]);
+
+  const navItems = [
+    { id: '01', name: 'Index', path: '/' },
+    { id: '02', name: 'Personnel', path: '/team' },
+    { id: '03', name: 'Archive', path: '/about' },
+    { id: '04', name: 'Contact', path: '/contact' }
+  ];
 
   return (
-    <motion.nav 
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-fit transition-all duration-500 ${isScrolled ? 'top-4' : 'top-8'}`}
-    >
-      <div className={`flex items-center justify-between gap-8 px-6 rounded-full border transition-all duration-500 ${isScrolled ? 'bg-[#030712]/80 backdrop-blur-xl border-white/20 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] py-4' : 'bg-black/20 backdrop-blur-md border-white/10 py-3'}`}>
-        <Link to="/" className="flex items-center gap-2 hover-trigger" data-cursor-text="HOME">
-          <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-          <span className="text-sm font-bold text-white tracking-widest uppercase">System.OS</span>
-        </Link>
-        <div className="hidden md:flex items-center gap-8 text-xs font-mono tracking-widest uppercase">
-          <Magnetic>
-            <Link to="/work" className={`transition-colors ${location.pathname === '/work' ? 'text-white' : 'text-white/70 hover:text-white'}`} data-cursor-text="WORK">Archive</Link>
-          </Magnetic>
-          <Magnetic>
-            <Link to="/about" className={`transition-colors ${location.pathname === '/about' ? 'text-white' : 'text-white/70 hover:text-white'}`} data-cursor-text="ABOUT">About</Link>
-          </Magnetic>
+    <header className="fixed top-0 left-0 w-full z-[110] pointer-events-none">
+      <motion.div
+        animate={{
+          backgroundColor: isScrolled ? "rgba(12, 10, 9, 0.7)" : "rgba(12, 10, 9, 0)",
+          backdropFilter: isScrolled ? "blur(16px)" : "blur(0px)",
+          borderBottomColor: isScrolled ? "rgba(41, 37, 36, 0.5)" : "rgba(41, 37, 36, 0)",
+          paddingTop: isScrolled ? "1rem" : "2.5rem",
+          paddingBottom: isScrolled ? "1rem" : "2.5rem",
+        }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full px-6 md:px-12 border-b pointer-events-auto"
+      >
+        <div className="max-w-screen-2xl mx-auto flex flex-row justify-between items-center">
+          
+          {/* Left: Branding */}
+          <Link to="/" className="flex flex-col group transition-opacity hover:opacity-70 shrink-0">
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-baseline gap-1 md:gap-2"
+            >
+              <span className="text-base sm:text-lg md:text-2xl font-serif italic font-medium tracking-tighter text-stone-100">
+                W.M.E.S
+              </span>
+              <span className="text-[5px] md:text-[7px] font-mono text-stone-600 font-bold tracking-widest uppercase">
+                / Collective
+              </span>
+            </motion.div>
+          </Link>
+
+          {/* Center: Navigation Links */}
+          <nav className="flex items-center gap-3 sm:gap-8 md:gap-12 lg:gap-16">
+            {navItems.map((item, i) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <Link
+                  key={i}
+                  to={item.path}
+                  className={`flex items-start gap-1 group relative py-1 ${
+                    isActive ? 'text-stone-100' : 'text-stone-600 hover:text-stone-300'
+                  } transition-colors duration-500`}
+                >
+                  <span className="text-[5px] md:text-[7px] font-mono mt-0.5 md:mt-1 opacity-40 group-hover:opacity-100 transition-opacity hidden sm:inline">
+                    {item.id}
+                  </span>
+                  <span className="text-[7px] md:text-[10px] uppercase tracking-[0.1em] sm:tracking-[0.3em] font-medium font-sans">
+                    {item.name}
+                  </span>
+                  
+                  {/* Active Underline */}
+                  {isActive && (
+                    <motion.div 
+                      layoutId="header-nav-line"
+                      className="absolute -bottom-1 left-0 w-full h-[1px] bg-stone-100"
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                  
+                  {/* Hover line */}
+                  {!isActive && (
+                    <div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-stone-800 group-hover:w-full transition-all duration-700" />
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Right: Technical Metadata (Desktop Only) */}
+          <div className="hidden xl:flex flex-col items-end gap-1 opacity-20 pointer-events-none transition-opacity duration-700" style={{ opacity: isScrolled ? 0 : 0.2 }}>
+            <span className="text-[7px] font-mono tracking-[0.4em] uppercase">Security_Protocol_4.0</span>
+            <span className="text-[7px] font-mono tracking-[0.4em] uppercase text-stone-500">Node_ID: WMES_JAK_01</span>
+          </div>
         </div>
-        <Magnetic>
-          <a href="mailto:hello@dev.os" className="text-xs font-mono tracking-widest uppercase text-white hover:text-cyan-400 transition-colors" data-cursor-text="MAIL">
-            [ Initiate ]
-          </a>
-        </Magnetic>
-      </div>
-    </motion.nav>
+        
+        {/* Scroll Progress Bar Mini */}
+        <motion.div 
+          className="absolute bottom-0 left-0 h-[1px] bg-stone-100/20 origin-left"
+          style={{ 
+            scaleX: scrollYProgress,
+            width: '100%',
+            display: isScrolled ? 'block' : 'none'
+          }}
+        />
+      </motion.div>
+    </header>
   );
 }

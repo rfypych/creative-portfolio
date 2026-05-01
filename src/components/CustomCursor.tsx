@@ -49,7 +49,7 @@ export default function CustomCursor() {
         y: cursorYSpring,
       }}
       animate={{
-        scale: isHovering ? 2.5 : 1,
+        scale: isHovering ? 4 : 1,
       }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
@@ -57,9 +57,9 @@ export default function CustomCursor() {
         {isHovering && hoverText && (
           <motion.span 
             initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 0.5, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
-            className="text-[4px] text-black font-bold tracking-widest absolute"
+            className="text-[3px] text-black font-black tracking-widest absolute uppercase"
           >
             {hoverText}
           </motion.span>
