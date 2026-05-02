@@ -47,7 +47,7 @@ export default function About() {
               </div>
             </div>
             <div className="md:col-span-3">
-              <div className="grid grid-cols-1 md:grid-cols-2 bg-stone-900 border border-stone-800 gap-px">
+              <div className="grid grid-cols-2 bg-stone-900 border border-stone-800 gap-px">
                 {missions.map((m, i) => (
                   <motion.div 
                     key={i} 
@@ -55,11 +55,11 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: i * 0.1 }}
                     viewport={{ once: true }}
-                    className={`bg-stone-950 p-6 md:p-10 group hover:bg-stone-900/10 transition-all duration-500 flex flex-col justify-between ${i === 4 ? 'md:col-span-2 aspect-auto py-12' : 'aspect-[4/3] md:aspect-auto md:min-h-[250px]'}`}
+                    className={`bg-stone-950 p-4 sm:p-6 md:p-10 group hover:bg-stone-900/10 transition-all duration-500 flex flex-col justify-between ${i === 4 ? 'col-span-2 aspect-auto py-8 md:py-12' : 'aspect-[4/3] sm:aspect-square md:aspect-auto md:min-h-[250px]'}`}
                   >
                     <div className="space-y-4 md:space-y-6">
                       <span className="text-[9px] md:text-[10px] font-mono text-stone-800 font-bold group-hover:text-stone-600 transition-colors">0{i + 1}</span>
-                      <p className="text-sm md:text-lg font-light text-stone-400 group-hover:text-stone-200 transition-colors leading-snug">
+                      <p className="text-[10px] sm:text-xs md:text-base font-light text-stone-400 group-hover:text-stone-200 transition-colors leading-snug">
                         {m}
                       </p>
                     </div>

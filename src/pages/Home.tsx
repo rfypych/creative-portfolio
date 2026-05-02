@@ -153,7 +153,7 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 bg-stone-900 border border-stone-900 gap-px">
+          <div className="grid grid-cols-2 lg:grid-cols-3 bg-stone-900 border border-stone-900 gap-px">
             {[
               { id: "R-01", title: "Vulnerability Research", desc: "Systematic auditing of hardware and software layers." },
               { id: "V-02", title: "Integrity Verification", desc: "Formal verification of security-critical systems." },
@@ -165,15 +165,15 @@ export default function Home() {
               <motion.div 
                 key={i} 
                 initial={{ opacity: 1, y: 0 }}
-                className="bg-stone-950 p-6 sm:p-8 md:p-12 lg:p-16 space-y-6 md:space-y-12 group hover:bg-stone-900/10 transition-all duration-700 relative overflow-hidden"
+                className="bg-stone-950 p-4 sm:p-6 md:p-10 lg:p-16 space-y-4 md:space-y-12 group hover:bg-stone-900/10 transition-all duration-700 relative overflow-hidden"
               >
                 {/* ID Watermark */}
                 <span className="absolute top-4 right-4 md:top-8 md:right-8 font-mono text-[7px] md:text-[10px] text-stone-800 uppercase tracking-widest group-hover:text-stone-400 transition-colors">[{s.id}]</span>
                 
                 <div className="space-y-3 md:space-y-6">
-                  <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif italic text-stone-200 leading-tight transition-transform group-hover:-translate-y-1 duration-500">{s.title}</h4>
+                  <h4 className="text-base sm:text-xl md:text-3xl lg:text-4xl font-serif italic text-stone-200 leading-tight transition-transform group-hover:-translate-y-1 duration-500">{s.title}</h4>
                   <div className="w-10 h-px bg-stone-800 group-hover:w-full transition-all duration-700 mt-2" />
-                  <p className="text-[11px] sm:text-sm md:text-base font-light text-stone-500 leading-relaxed group-hover:text-stone-400 transition-colors">
+                  <p className="text-[9px] sm:text-[11px] md:text-sm font-light text-stone-500 leading-relaxed group-hover:text-stone-400 transition-colors line-clamp-4">
                     {s.desc}
                   </p>
                 </div>

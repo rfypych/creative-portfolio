@@ -76,7 +76,7 @@ export default function AsciiCube() {
   };
 
   return (
-    <pre className="text-[6px] sm:text-[7px] md:text-[8px] leading-none font-mono text-stone-600 select-none group-hover:text-stone-300 transition-colors duration-1000">
+    <pre className="text-[4px] xs:text-[5px] sm:text-[6px] md:text-[8px] leading-none font-mono text-stone-600 select-none group-hover:text-stone-300 transition-colors duration-1000">
       {renderCube(frame)}
     </pre>
   );

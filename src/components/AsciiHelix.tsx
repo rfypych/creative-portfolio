@@ -81,7 +81,7 @@ export default function AsciiHelix() {
   };
 
   return (
-    <pre className="text-[7px] sm:text-[9px] md:text-[10px] leading-[1.1] font-mono text-stone-500 select-none transition-colors duration-700 hover:text-stone-300">
+    <pre className="text-[5px] xs:text-[6px] sm:text-[8px] md:text-[10px] leading-[1.1] font-mono text-stone-500 select-none transition-colors duration-700 hover:text-stone-300">
       {renderHelix(frame)}
     </pre>
   );

@@ -67,7 +67,7 @@ export default function AsciiSphere() {
   };
 
   return (
-    <pre className="text-[5px] sm:text-[6px] md:text-[8px] leading-none font-mono text-stone-700 select-none group-hover:text-stone-400 transition-colors duration-700 opacity-60">
+    <pre className="text-[3px] xs:text-[4px] sm:text-[5px] md:text-[8px] leading-none font-mono text-stone-700 select-none group-hover:text-stone-400 transition-colors duration-700 opacity-60">
       {renderSphere(frame)}
     </pre>
   );

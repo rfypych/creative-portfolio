@@ -69,7 +69,7 @@ export default function AsciiTorusKnot() {
   };
 
   return (
-    <pre className="text-[6px] sm:text-[8px] md:text-[9px] leading-none font-mono text-stone-600 select-none group-hover:text-stone-300 transition-colors duration-1000">
+    <pre className="text-[4px] xs:text-[5px] sm:text-[7px] md:text-[9px] leading-none font-mono text-stone-600 select-none group-hover:text-stone-300 transition-colors duration-1000">
       {renderKnot(frame)}
     </pre>
   );

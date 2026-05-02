@@ -33,11 +33,11 @@ export default function Contact() {
             <div className="grid grid-cols-2 lg:grid-cols-1 gap-px bg-stone-900">
               <a 
                 href="mailto:zikri.wmes@gmail.com" 
-                className="bg-stone-950 p-6 sm:p-10 md:p-12 group hover:bg-stone-900/40 transition-all duration-500 flex flex-col justify-between aspect-square lg:aspect-auto"
+                className="bg-stone-950 p-4 sm:p-8 md:p-12 group hover:bg-stone-900/40 transition-all duration-500 flex flex-col justify-between aspect-[4/3] sm:aspect-square lg:aspect-auto"
               >
                 <div className="space-y-3 md:space-y-4">
                   <span className="text-[8px] md:text-[9px] font-mono text-stone-700 uppercase tracking-widest group-hover:text-stone-500 transition-colors">Channel_01</span>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-serif italic transition-colors group-hover:text-stone-100 text-stone-300">Official Email</h3>
+                  <h3 className="text-base sm:text-xl md:text-3xl font-serif italic transition-colors group-hover:text-stone-100 text-stone-300">Official Email</h3>
                 </div>
                 <div className="h-[2px] w-8 bg-stone-800 group-hover:w-full group-hover:bg-stone-700 transition-all duration-700 mt-auto" />
               </a>
@@ -46,11 +46,11 @@ export default function Contact() {
                 href="https://t.me/WMES_COMMUNITY" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="bg-stone-950 p-6 sm:p-10 md:p-12 group hover:bg-stone-900/40 transition-all duration-500 flex flex-col justify-between aspect-square lg:aspect-auto"
+                className="bg-stone-950 p-4 sm:p-8 md:p-12 group hover:bg-stone-900/40 transition-all duration-500 flex flex-col justify-between aspect-[4/3] sm:aspect-square lg:aspect-auto"
               >
                 <div className="space-y-3 md:space-y-4">
                   <span className="text-[8px] md:text-[9px] font-mono text-stone-700 uppercase tracking-widest group-hover:text-stone-500 transition-colors">Channel_02</span>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-serif italic transition-colors group-hover:text-stone-100 text-stone-300">Telegram Hub</h3>
+                  <h3 className="text-base sm:text-xl md:text-3xl font-serif italic transition-colors group-hover:text-stone-100 text-stone-300">Telegram Hub</h3>
                 </div>
                 <div className="h-[2px] w-8 bg-stone-800 group-hover:w-full group-hover:bg-stone-700 transition-all duration-700 mt-auto" />
               </a>
@@ -95,13 +95,13 @@ export default function Contact() {
 
             <div className="p-8 md:p-12 space-y-8 bg-stone-950">
               <div className="grid grid-cols-2 gap-px bg-stone-900 border border-stone-900 overflow-hidden">
-                 <div className="p-4 bg-stone-950 space-y-2">
+                 <div className="p-3 sm:p-4 bg-stone-950 space-y-1 sm:space-y-2">
                     <span className="text-[7px] font-mono text-stone-700 uppercase tracking-widest">Availability</span>
-                    <p className="text-stone-300 font-serif italic text-lg line-clamp-1">Active</p>
+                    <p className="text-stone-300 font-serif italic text-sm sm:text-lg line-clamp-1">Active</p>
                  </div>
-                 <div className="p-4 bg-stone-950 space-y-2">
+                 <div className="p-3 sm:p-4 bg-stone-950 space-y-1 sm:space-y-2">
                     <span className="text-[7px] font-mono text-stone-700 uppercase tracking-widest">Region</span>
-                    <p className="text-stone-300 font-serif italic text-lg line-clamp-1">Asia/SE</p>
+                    <p className="text-stone-300 font-serif italic text-sm sm:text-lg line-clamp-1">Asia/SE</p>
                  </div>
               </div>
 

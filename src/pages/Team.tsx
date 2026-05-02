@@ -39,7 +39,7 @@ export default function Team() {
           </div>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-stone-900 border border-stone-800 gap-px overflow-hidden">
+        <div className="grid grid-cols-2 lg:grid-cols-3 bg-stone-900 border border-stone-800 gap-px overflow-hidden">
           {personnel.map((member, i) => (
             <motion.div
               key={i}
@@ -47,7 +47,7 @@ export default function Team() {
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true, margin: "-5%" }}
-              className="group bg-stone-950 p-6 sm:p-8 md:p-12 space-y-6 md:space-y-10 hover:bg-stone-900/10 transition-all duration-700 flex flex-col"
+              className="group bg-stone-950 p-4 sm:p-6 md:p-12 space-y-4 sm:space-y-6 md:space-y-10 hover:bg-stone-900/10 transition-all duration-700 flex flex-col"
             >
               <div className="aspect-[4/3] sm:aspect-square bg-stone-900/20 border border-stone-900/60 relative overflow-hidden group-hover:border-stone-700 transition-colors duration-500 rounded-sm">
                  {/* Technical watermark */}
@@ -67,13 +67,13 @@ export default function Team() {
               <div className="space-y-4 md:space-y-6 text-left flex-1 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="flex flex-col xl:flex-row justify-between items-start xl:items-baseline gap-1 xl:gap-2">
-                    <h3 className="text-xl sm:text-2xl font-serif italic tracking-tight group-hover:text-stone-300 transition-colors truncate w-full">
+                    <h3 className="text-base sm:text-xl md:text-2xl font-serif italic tracking-tight group-hover:text-stone-300 transition-colors truncate w-full">
                       {member.name}
                     </h3>
                     <span className="font-mono text-[7px] md:text-[8px] text-stone-700 uppercase tracking-widest font-bold shrink-0">{member.role}</span>
                   </div>
                   <div className="h-px w-full bg-stone-900 group-hover:bg-stone-800 transition-colors" />
-                  <p className="text-[11px] sm:text-sm md:text-base font-light leading-relaxed text-stone-500 italic text-balanced hover:text-stone-400 transition-colors line-clamp-4">
+                  <p className="text-[9px] sm:text-[11px] md:text-sm font-light leading-relaxed text-stone-500 italic text-balanced hover:text-stone-400 transition-colors line-clamp-4">
                     "{member.quote}"
                   </p>
                 </div>
